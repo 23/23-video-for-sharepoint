@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature Id="a0e16d5c-1c2a-4f17-8355-0b9cb93736a6" Title="WebParts_2" Scope="Site" Version="1.0.0.0" Hidden="FALSE" DefaultResourceFile="core" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="WebParts\TwentythreeButton.xml" />
+    <ElementFile Location="WebParts\TwentythreeButton.webpart" />
+  </ElementManifests>
+</Feature>

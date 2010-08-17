@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <!--
+      The following Guid is used as a reference to the web part class, 
+      and it will be automatically replaced with actual type name at deployment time.
+      -->
+      <type name="f6c83006-86d0-4837-894f-1861d312014f" />
+      <importErrorMessage>Cannot import Inline Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Integrated 23 Video web part</property>
+        <property name="Description" type="string">Integrated 23 Video web part with inline frame display. Requires a priviliged account to be set up.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
