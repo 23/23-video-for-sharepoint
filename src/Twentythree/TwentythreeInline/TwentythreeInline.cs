@@ -78,6 +78,18 @@ namespace Twentythree
             set { _AccessTokenSecret = value; }
         }
 
+        private string _InlineStyle;
+        [WebBrowsable(true),
+         Personalizable(PersonalizationScope.Shared),
+         WebDescription("Inline CSS style"),
+         Category("Frame appearance"),
+         WebDisplayName("Inline CSS style")]
+        public string InlineStyle
+        {
+            get { return _InlineStyle; }
+            set { _InlineStyle = value; }
+        }
+
         public TwentythreeInline()
         {
         }
@@ -134,6 +146,7 @@ namespace Twentythree
             InlineFrameControl.Attributes["width"] = _Width;
             InlineFrameControl.Attributes["height"] = _Height;
             InlineFrameControl.Attributes["src"] = IframeUri;
+            InlineFrameControl.Attributes["style"] = _InlineStyle;
             ContainerControl.Controls.Add(InlineFrameControl);
         }
     }

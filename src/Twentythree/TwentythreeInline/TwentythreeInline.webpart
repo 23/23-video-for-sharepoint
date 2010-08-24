@@ -11,7 +11,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Integrated 23 Video web part</property>
+        <property name="Title" type="string">23 Video inline web part</property>
         <property name="Description" type="string">Integrated 23 Video web part with inline frame display. Requires a priviliged account to be set up.</property>
       </properties>
     </data>
