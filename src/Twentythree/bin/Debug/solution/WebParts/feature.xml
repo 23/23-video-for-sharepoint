@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature Id="a7c967ca-a792-4f7e-bc9f-89b2d215fdd2" Title="WebParts" Scope="Site" Version="1.0.0.0" Hidden="FALSE" DefaultResourceFile="core" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="WebParts\TwentythreeInline.xml" />
+    <ElementFile Location="WebParts\TwentythreeInline.webpart" />
+  </ElementManifests>
+</Feature>
