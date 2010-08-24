@@ -11,11 +11,7 @@ All web parts rely on the 23 .NET API implementation, which furthermore relies o
 
 # Installation
 
-To install the web parts into your SharePoint solution, download all files in the `/dist` directory of the repository, and start by adding the 23API.dll and DotNetOpenAuth.dll dependencies to your GAC. On modern distributions of Windows Server, the GAC repository is found on either of the following paths:
-
-`C:\WINNT\Assembly` or `C:\Windows\Assembly`
-
-After the dependecies have been deployed, simply install the web parts by executing `setup.bat`.
+To install the web parts into your SharePoint solution, download all files in the `/dist` directory of the repository, and simply run a fitting deployment batch command. If in doubt, use the `deploywithwspbuilder.bat` batch command.
 
 # Using the web parts
 
