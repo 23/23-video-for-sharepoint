@@ -17,7 +17,7 @@ All web parts rely on the 23 .NET API implementation version 1.1, which furtherm
 2. Create a privileged API account on your video site and save the credentials
 3. Append the following section to your web.config for the SharePoint solution (insert your domain and credentials where shown in brackets):
 
-    <appSettings>
+      <appSettings>
         <add key="TwentythreeDomain" value="[domain of your video site]" />
         <add key="TwentythreeConsumerKey" value="[API consumer key]" />
         <add key="TwentythreeConsumerSecret" value="[API consumer secret]" />
