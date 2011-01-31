@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements Id="1bfbf8cc-7cdb-4a4e-a26e-c29a0499bb5e" xmlns="http://schemas.microsoft.com/sharepoint/" >
-  <Module Name="WebParts" List="113" Url="_catalogs/wp">
-    <File Path="TwentythreeButton.webpart" Url="TwentythreeButton.webpart" Type="GhostableInLibrary" />
-  </Module>
-</Elements>

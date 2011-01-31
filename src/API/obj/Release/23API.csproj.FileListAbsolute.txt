@@ -1,9 +1,0 @@
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\23API.dll
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\23API.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\DotNetOpenAuth.dll
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\DotNetOpenAuth.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\DotNetOpenAuth.xml
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\bin\Release\sr\DotNetOpenAuth.resources.dll
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\obj\Release\23API.dll
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\Twentythree\API\obj\Release\23API.pdb
