@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="WebPartPopulation" Url="_catalogs/wp" RootWebOnly="TRUE">
+    <File Url="VisualButton.webpart" Type="GhostableInLibrary">
+      <Property Name="Group" Value="23 Video"></Property>
+      <Property Name="QuickAddGroups" Value="23 Video" />
+    </File>
+  </Module>
+</Elements>

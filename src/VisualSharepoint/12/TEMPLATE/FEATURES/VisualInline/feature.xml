@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature  Id="c9132eba-f2cb-4cc0-9a3e-2d60cdf13572"
+          Title="23 Video inline frame"
+          Description="Gives users access to a private 23 Video site through displaying a signed session in an inline frame"
+          Version="12.0.0.0"
+          Hidden="FALSE"
+          Scope="Site"
+          DefaultResourceFile="core"
+          xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="elements.xml"/>
+    <ElementFile Location="VisualInline.webpart" />
+  </ElementManifests>
+</Feature>
