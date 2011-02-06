@@ -27,6 +27,31 @@ namespace Visual.Sharepoint
         protected Panel OrderPanel;
         protected DropDownList Order;
 
+        private List<Domain.Tag> GetTags(IApiProvider apiProvider)
+        {
+            List<Domain.Tag> result = new List<Domain.Tag>();
+            ITagService tagService = new TagService(apiProvider);
+
+            bool done = false;
+            int page = 1;
+            while (!done)
+            {
+                List<Domain.Tag> tags = tagService.GetList(new TagListParameters
+                {
+                    OrderBy = TagListSort.Tag,
+                    Order = GenericSort.Ascending,
+                    Size = 100,
+                    PageOffset = page++
+                });
+
+                if (tags.Count > 0)
+                    result.AddRange(tags);
+                else done = true;
+            }
+
+            return result;
+        }
+
         protected override void CreateChildControls()
         {
             // Define a readable title
@@ -105,13 +130,7 @@ namespace Visual.Sharepoint
                 Tags.Height = new Unit("400px", CultureInfo.InvariantCulture);
                 Tags.SelectionMode = ListSelectionMode.Multiple;
 
-                ITagService tagService = new TagService(apiProvider);
-                List<Domain.Tag> tags = tagService.GetList(new TagListParameters
-                {
-                    OrderBy = TagListSort.Tag,
-                    Order = GenericSort.Ascending,
-                    Size = 1000
-                });
+                List<Domain.Tag> tags = GetTags(apiProvider);
 
                 foreach (Domain.Tag tag in tags)
                 {
@@ -166,7 +185,8 @@ namespace Visual.Sharepoint
                 {
                     foreach (string tag in webPart.Tags)
                     {
-                        Tags.Items.FindByValue(tag).Selected = true;
+                        ListItem listItem = Tags.Items.FindByValue(tag);
+                        if (listItem != null) listItem.Selected = true;
                     }
                 }
 
