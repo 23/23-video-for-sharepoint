@@ -46,7 +46,8 @@ namespace Visual.Sharepoint
 
                 if (tags.Count > 0)
                     result.AddRange(tags);
-                else done = true;
+                if (tags.Count < 100)
+                    done = true;
             }
 
             return result;
@@ -178,8 +179,10 @@ namespace Visual.Sharepoint
             if (webPart != null)
             {
                 Count.Text = webPart.Count.ToString();
-                    
-                Channels.SelectedValue = (String.IsNullOrEmpty(webPart.AlbumId) ? "-" : webPart.AlbumId);
+                
+                if ((!String.IsNullOrEmpty(webPart.AlbumId)) && (Channels.Items.FindByValue(webPart.AlbumId) != null))
+                    Channels.SelectedValue = webPart.AlbumId;
+                else Channels.SelectedValue = "-";
 
                 if (webPart.Tags != null)
                 {

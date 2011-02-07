@@ -75,7 +75,7 @@ namespace Visual.Sharepoint
             VisualEmbed webPart = (VisualEmbed)WebPartToEdit;
             if (webPart != null)
             {
-                if (Videos != null) Videos.SelectedValue = webPart.PhotoId;
+                if ((Videos != null) && (Videos.Items.FindByValue(webPart.PhotoId) != null)) Videos.SelectedValue = webPart.PhotoId;
             }
             
             return;
