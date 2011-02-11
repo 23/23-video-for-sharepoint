@@ -6,6 +6,7 @@ The "23 Video for SharePoint" library provides intuitive web parts for implement
 * 23 Video launch button - signs a session for your video site and displays a button for launching the session
 * 23 Video embed - embeds a selected video from your video site
 * 23 Video list - shows a list of videos from your video site based on channel and tags
+* 23 Video grid - shows a grid of videos from your video site based on channel and tags
 
 All web parts are supplied with both source code and project files in the `/src` directory of the repository, and also an installable distribution in the `/dist` directory. For installation instructions please read further down.
 
@@ -18,7 +19,7 @@ All web parts rely on the 23 .NET API implementation version 1.1, which furtherm
 3. Append the following section to your web.config for the SharePoint solution (insert your domain and credentials where shown in brackets):
 
        <appSettings>
-           <add key="TwentythreeDomain" value="[domain of your video site]" />
+           <add key="TwentythreeDomain" value="[domain of your video site excluding http://]" />
            <add key="TwentythreeConsumerKey" value="[API consumer key]" />
            <add key="TwentythreeConsumerSecret" value="[API consumer secret]" />
            <add key="TwentythreeAccessToken" value="[API access token]" />
