@@ -72,6 +72,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPartCode\Configuration.cs" />
+    <Compile Include="WebPartCode\VisualGrid.cs" />
+    <Compile Include="WebPartCode\VisualGridEditorPart.cs" />
     <Compile Include="WebPartCode\VisualButton.cs" />
     <Compile Include="WebPartCode\VisualInline.cs" />
     <Compile Include="WebPartCode\VisualListEditorPart.cs" />
@@ -82,6 +84,8 @@
     <Compile Include="WebPartCode\VisualEmbed.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="12\TEMPLATE\FEATURES\VisualGrid\elements.xml" />
+    <Content Include="12\TEMPLATE\FEATURES\VisualGrid\feature.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualButton\elements.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualButton\feature.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualInline\elements.xml" />
@@ -93,6 +97,7 @@
     <Content Include="solutionid.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="12\TEMPLATE\FEATURES\VisualGrid\VisualGrid.webpart" />
     <None Include="12\TEMPLATE\FEATURES\VisualButton\VisualButton.webpart" />
     <None Include="12\TEMPLATE\FEATURES\VisualInline\VisualInline.webpart" />
     <None Include="12\TEMPLATE\FEATURES\VisualList\VisualList.webpart" />
