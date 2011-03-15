@@ -10,7 +10,7 @@ namespace Visual.Sharepoint
 {
     /// <summary>
     /// Editor controller for the embed webpart
-    /// </summary>
+    /// </summary
     public class VisualEmbedEditorPart : System.Web.UI.WebControls.WebParts.EditorPart
     {
         protected Panel EditorPanel;
@@ -18,6 +18,31 @@ namespace Visual.Sharepoint
         // Web part specific controls
         protected DropDownList Videos;
         protected Panel VideoPanel;
+
+        private List<Domain.Photo> GetPhotos(IApiProvider apiProvider)
+        {
+            List<Domain.Photo> result = new List<Domain.Photo>();
+            IPhotoService photoService = new PhotoService(apiProvider);
+
+            bool done = false;
+            int page = 1;
+            while (!done)
+            {
+                List<Domain.Photo> photos = photoService.GetList(new PhotoListParameters
+                {
+                    IncludeUnpublished = false,
+                    Size = 100,
+                    PageOffset = page++
+                });
+
+                if (photos.Count > 0)
+                    result.AddRange(photos);
+                if (photos.Count < 100)
+                    done = true;
+            }
+
+            return result;
+        }
 
         protected override void CreateChildControls()
         {
@@ -42,12 +67,8 @@ namespace Visual.Sharepoint
                 Videos.CssClass = "UserInput";
 
                 // Get a list of videos to throw in there
-                IPhotoService photoService = new PhotoService(apiProvider);
-                List<Domain.Photo> photos = photoService.GetList(new PhotoListParameters
-                {
-                    IncludeUnpublished = false,
-                    Size = 200
-                });
+                //IPhotoService photoService = new PhotoService(apiProvider);
+                List<Domain.Photo> photos = GetPhotos(apiProvider);
 
                 foreach (Domain.Photo photo in photos)
                 {
