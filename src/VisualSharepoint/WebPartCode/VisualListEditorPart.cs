@@ -41,7 +41,9 @@ namespace Visual.Sharepoint
                     OrderBy = TagListSort.Tag,
                     Order = GenericSort.Ascending,
                     Size = 100,
-                    PageOffset = page++
+                    PageOffset = page++,
+                    ExcludeMachineTags = false,
+                    ReformatTags = false
                 });
 
                 if (tags.Count > 0)

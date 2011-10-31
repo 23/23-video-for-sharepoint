@@ -33,11 +33,7 @@ namespace Visual.Sharepoint
             string widthString = width.ToString();
             string heightString = (height == null ? Math.Round(width / 16.0 * 9.0).ToString() : height.Value.ToString());
 
-            string result = "<script src=\"http://" + domain + "/resources/um/script/swfobject/swfobject.js\"></script>" +
-                            "<div id=\"visual-" + photoId + "\" class=\"embedded-video\"><div class=\"no-flash\"><iframe src=\"http://" + domain + "/" + photoId + ".html?token=" + photoToken + "&photo%5fid=" + photoId + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe></div></div>" +
-                            "<script>swfobject.embedSWF(\"http://" + domain + "/" + photoId + ".swf\", \"visual-" + photoId + "\", \"" + widthString + "\", \"" + heightString + "\", \"9.0.0\", \"/resources/um/script/swfobject/expressInstall.swf\", {\"photo_id\": \"" + photoId + "\", \"token\": \"" + photoToken + "\"}, {allowscriptaccess:'always', allowfullscreen:'true'}, {id:'visual-" + photoId + "', name:'visual-" + photoId + "'});</script>";
-
-            return result;
+            return "<iframe src=\"http://" + domain + "/v.ihtml?token=" + photoToken + "&photo%5fid=" + photoId + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe>";
         }
     }
 }

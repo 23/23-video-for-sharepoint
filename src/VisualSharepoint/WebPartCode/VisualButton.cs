@@ -45,7 +45,7 @@ namespace Visual.Sharepoint
 
                     // Get the session token
                     ISessionService sessionService = new SessionService(Utilities.ApiProvider);
-                    Domain.Session session = sessionService.GetToken();
+                    Domain.Session session = sessionService.GetToken("/");
 
                     string buttonUri = session.ReturnURL;
 
