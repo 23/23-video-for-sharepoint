@@ -13,6 +13,7 @@ namespace Visual.Sharepoint
         private List<string> _tags = null;
         private int _count = 10;
         private string _order = "PublishedDescending";
+        private string _tagMode = "Any";
 
         [Personalizable(PersonalizationScope.Shared)]
         public string AlbumId
@@ -40,6 +41,13 @@ namespace Visual.Sharepoint
         {
             get { return _order; }
             set { _order = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public string TagMode
+        {
+            get { return _tagMode; }
+            set { _tagMode = value; }
         }
 
         public VisualList()
@@ -105,7 +113,7 @@ namespace Visual.Sharepoint
 
                 if ((_tags != null) && (_tags.Count > 0))
                 {
-                    listParameters.TagMode = PhotoTagMode.Any;
+                    listParameters.TagMode = (_tagMode == "All" ? PhotoTagMode.And : PhotoTagMode.Any);
                     listParameters.Tags = _tags;
                 }
 

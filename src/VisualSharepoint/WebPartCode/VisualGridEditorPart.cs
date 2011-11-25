@@ -26,6 +26,7 @@ namespace Visual.Sharepoint
 
         protected Panel TagsPanel;
         protected ListBox Tags;
+        protected DropDownList TagMode;
 
         protected Panel OrderPanel;
         protected DropDownList Order;
@@ -147,6 +148,19 @@ namespace Visual.Sharepoint
                 TagsPanel.Controls.Add(new LiteralControl("<div class=\"UserSectionHead\">Tags</div>"));
                 TagsPanel.Controls.Add(new LiteralControl("<div class=\"UserSectionBody\"><div class=\"UserControlGroup\"><nobr>"));
 
+                // Mode
+                TagMode = new DropDownList();
+                TagMode.CssClass = "UserInput";
+
+                TagMode.Items.Add(new ListItem("Videos including any of...", "Any"));
+                TagMode.Items.Add(new ListItem("Videos including all of...", "All"));
+
+                TagMode.AutoPostBack = false;
+
+                TagsPanel.Controls.Add(TagMode);
+
+                TagsPanel.Controls.Add(new LiteralControl("<br>"));
+
                 // Available
                 Tags = new ListBox();
                 Tags.CssClass = "UserInput";
@@ -218,6 +232,7 @@ namespace Visual.Sharepoint
                 }
 
                 Order.SelectedValue = webPart.Order;
+                TagMode.SelectedValue = (webPart.TagMode == "All" ? "All" : "Any");
             }
             
             return;
@@ -247,6 +262,7 @@ namespace Visual.Sharepoint
                 }
 
                 webPart.Tags = tags;
+                webPart.TagMode = TagMode.SelectedValue;
 
                 webPart.Order = Order.SelectedValue;
             }
