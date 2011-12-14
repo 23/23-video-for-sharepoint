@@ -29,7 +29,7 @@ namespace Visual.Sharepoint
         /// </summary>
         public static string EmbedCode(string photoId, string photoToken, int width, int? height)
         {
-            string domain = ConfigurationSettings.AppSettings["TwentythreeDomain"];
+            string domain = Configuration.Domain;
             string widthString = width.ToString();
             string heightString = (height == null ? Math.Round(width / 16.0 * 9.0).ToString() : height.Value.ToString());
 
