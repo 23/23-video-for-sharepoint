@@ -51,7 +51,6 @@ namespace Visual.Sharepoint
 
             // Add the containing panel
             EditorPanel = new Panel();
-            EditorPanel.CssClass = "ms-ToolPartSpacing";
             this.Controls.Add(EditorPanel);
         
             // Check that we actually have everything configured

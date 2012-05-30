@@ -63,7 +63,6 @@ namespace Visual.Sharepoint
 
             // Add the containing panel
             EditorPanel = new Panel();
-            EditorPanel.CssClass = "ms-ToolPartSpacing";
             this.Controls.Add(EditorPanel);
         
             // Check that we actually have everything configured
@@ -83,8 +82,8 @@ namespace Visual.Sharepoint
                 // Finish it up
                 Count.AutoPostBack = false;
                 CountPanel.Controls.Add(Count);
-                CountPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
-
+                CountPanel.Controls.Add(new LiteralControl("</nobr></div></div><div style=\"width:100%\" class=\"UserDottedLine\"></div>"));
+                
                 EditorPanel.Controls.Add(CountPanel);
 
                 // * Album
@@ -116,7 +115,7 @@ namespace Visual.Sharepoint
                 // Finish it up
                 Channels.AutoPostBack = false;
                 ChannelsPanel.Controls.Add(Channels);
-                ChannelsPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+                ChannelsPanel.Controls.Add(new LiteralControl("</nobr></div></div><div style=\"width:100%\" class=\"UserDottedLine\"></div>"));
 
                 EditorPanel.Controls.Add(ChannelsPanel);
 
@@ -156,7 +155,7 @@ namespace Visual.Sharepoint
 
                 TagsPanel.Controls.Add(Tags);
 
-                TagsPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+                TagsPanel.Controls.Add(new LiteralControl("</nobr></div></div><div style=\"width:100%\" class=\"UserDottedLine\"></div>"));
                 EditorPanel.Controls.Add(TagsPanel);
 
                 // * Order
