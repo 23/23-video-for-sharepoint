@@ -18,13 +18,13 @@ All web parts rely on the 23 .NET API implementation version 1.1, which furtherm
 2. Create a privileged API account on your video site and save the credentials
 3. Append the following section to your web.config for the SharePoint solution (insert your domain and credentials where shown in brackets):
 
-       <appSettings>
-           <add key="TwentythreeDomain" value="[domain of your video site excluding http://]" />
-           <add key="TwentythreeConsumerKey" value="[API consumer key]" />
-           <add key="TwentythreeConsumerSecret" value="[API consumer secret]" />
-           <add key="TwentythreeAccessToken" value="[API access token]" />
-           <add key="TwentythreeAccessTokenSecret" value="[API access token secret]" />
-       </appSettings>
+        <appSettings>  
+            <add key="TwentythreeDomain" value="[domain of your video site excluding http://]" />  
+            <add key="TwentythreeConsumerKey" value="[API consumer key]" />  
+            <add key="TwentythreeConsumerSecret" value="[API consumer secret]" />  
+            <add key="TwentythreeAccessToken" value="[API access token]" />  
+            <add key="TwentythreeAccessTokenSecret" value="[API access token secret]" />  
+        </appSettings>
 
 4. Go to the Site Collection Features section and enable the 23 Video web parts that you want
 
