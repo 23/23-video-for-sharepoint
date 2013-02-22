@@ -17,13 +17,26 @@ namespace Visual.Sharepoint
         private string _buttonValue;
         [WebBrowsable(true),
          Personalizable(PersonalizationScope.Shared),
-         WebDescription("Launch button value"),
+         WebDescription("Button / Link Text"),
          Category("Settings"),
-         WebDisplayName("Launch button value")]
+         WebDisplayName("Button / Link Text")]
         public string ButtonValue
         {
             get { return _buttonValue; }
             set { _buttonValue = value; }
+        }
+
+        private bool _useTextLink;
+        [WebBrowsable(true),
+         DefaultValue(false),
+         Personalizable(PersonalizationScope.Shared),
+         WebDescription("Use text link"),
+         Category("Settings"),
+         WebDisplayName("Use text link")]
+        public bool UseTextLink
+        {
+            get { return _useTextLink; }
+            set { _useTextLink = value; }
         }
 
         public VisualButton()
@@ -54,11 +67,22 @@ namespace Visual.Sharepoint
                     this.Controls.Add(containerControl);
 
                     // Create the button control
-                    HtmlGenericControl buttonControl = new HtmlGenericControl("input");
-                    buttonControl.Attributes["type"] = "button";
-                    buttonControl.Attributes["onclick"] = "javascript:location.href='" + buttonUri + "';";
-                    buttonControl.Attributes["value"] = (!String.IsNullOrEmpty(_buttonValue) ? _buttonValue.Replace("\"", "&quot;") : "Launch");
-                    containerControl.Controls.Add(buttonControl);
+                    if (_useTextLink)
+                    {
+                        string linkText = (!String.IsNullOrEmpty(_buttonValue) ? _buttonValue.Replace("\"", "&quot;") : "Launch");
+                        string link = "<a href='" + buttonUri + "'>" + linkText + "</a>";
+                        LiteralControl linkControl = new LiteralControl(link);
+                        containerControl.Controls.Add(linkControl);
+
+                    }
+                    else
+                    {
+                        HtmlGenericControl buttonControl = new HtmlGenericControl("input");
+                        buttonControl.Attributes["type"] = "button";
+                        buttonControl.Attributes["onclick"] = "javascript:location.href='" + buttonUri + "';";
+                        buttonControl.Attributes["value"] = (!String.IsNullOrEmpty(_buttonValue) ? _buttonValue.Replace("\"", "&quot;") : "Launch");
+                        containerControl.Controls.Add(buttonControl);
+                    }
                 }
                 catch (Exception ex)
                 {
