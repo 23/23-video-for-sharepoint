@@ -25,6 +25,20 @@ namespace Visual.Sharepoint
             }
         }
 
+        private static bool GetAppSettingBool(string identifier)
+        {
+            try
+            {
+                string result = ConfigurationSettings.AppSettings[identifier];
+                if (String.IsNullOrEmpty(result)) return false;
+                return bool.Parse(result);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static string Domain
         {
             get { return GetAppSetting("TwentythreeDomain"); }
@@ -52,6 +66,12 @@ namespace Visual.Sharepoint
         public static string AccessTokenSecret
         {
             get { return GetAppSetting("TwentythreeAccessTokenSecret"); }
+            private set { }
+        }
+
+        public static bool HttpSecure
+        {
+            get { return GetAppSettingBool("TwentythreeHttpSecure"); }
             private set { }
         }
     }

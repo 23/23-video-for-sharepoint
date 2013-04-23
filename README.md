@@ -23,10 +23,13 @@ All web parts rely on the 23 .NET API implementation version 1.1, which furtherm
             <add key="TwentythreeConsumerKey" value="[API consumer key]" />  
             <add key="TwentythreeConsumerSecret" value="[API consumer secret]" />  
             <add key="TwentythreeAccessToken" value="[API access token]" />  
-            <add key="TwentythreeAccessTokenSecret" value="[API access token secret]" />  
+            <add key="TwentythreeAccessTokenSecret" value="[API access token secret]" />
+            <add key="TwentythreeHttpSecure" value="[True/False]" />  
         </appSettings>
 
 4. Go to the Site Collection Features section and enable the 23 Video web parts that you want
+
+*Note: The key `TwentythreeHttpSecure` should default to 'False', and only be changed if your site has been setup to use HTTPS only. The key can be omitted entirely, which has the same effect as setting it to 'False'.*
 
 # Using the web parts
 

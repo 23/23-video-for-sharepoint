@@ -19,7 +19,8 @@ namespace Visual.Sharepoint
                                        Configuration.ConsumerKey,
                                        Configuration.ConsumerSecret,
                                        Configuration.AccessToken,
-                                       Configuration.AccessTokenSecret);
+                                       Configuration.AccessTokenSecret,
+                                       Configuration.HttpSecure);
             }
             private set { }
         }
