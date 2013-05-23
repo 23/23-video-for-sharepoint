@@ -1,38 +1,19 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A20228E4-1704-4FCB-8243-F8F323FD4A7C}</ProjectGuid>
+    <ProjectGuid>{C7F5B10E-E605-4A86-A75A-33D22C25A9B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Visual.Sharepoint</RootNamespace>
     <AssemblyName>VisualSharepoint</AssemblyName>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>VisualSharepoint.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <PublishUrl>http://localhost/VisualSharepoint/</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,74 +32,95 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>VisualSharepoint.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="23API, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c691d74182a532de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="23API">
       <HintPath>..\Dependencies\23API.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DotNetOpenAuth, Version=3.4.5.10202, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DotNetOpenAuth">
       <HintPath>..\Dependencies\DotNetOpenAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebPartCode\Configuration.cs" />
-    <Compile Include="WebPartCode\VisualGrid.cs" />
-    <Compile Include="WebPartCode\VisualGridEditorPart.cs" />
-    <Compile Include="WebPartCode\VisualButton.cs" />
-    <Compile Include="WebPartCode\VisualInline.cs" />
-    <Compile Include="WebPartCode\VisualListEditorPart.cs" />
-    <Compile Include="WebPartCode\Utilities.cs" />
-    <Compile Include="WebPartCode\VisualEmbedEditorPart.cs" />
-    <Compile Include="WebPartCode\VisualList.cs" />
-    <Compile Include="WebPartCode\VisualWebPart.cs" />
-    <Compile Include="WebPartCode\VisualEmbed.cs" />
+    <Compile Include="VisualButton\VisualButton.cs" />
+    <Compile Include="VisualEmbed\VisualEmbed.cs" />
+    <Compile Include="VisualEmbed\VisualEmbedEditorPart.cs" />
+    <Compile Include="VisualGrid\VisualGrid.cs" />
+    <Compile Include="VisualGrid\VisualGridEditorPart.cs" />
+    <Compile Include="VisualInline\VisualInline.cs" />
+    <Compile Include="VisualList\VisualList.cs" />
+    <Compile Include="VisualList\VisualListEditorPart.cs" />
+    <Compile Include="Visual\Configuration.cs" />
+    <Compile Include="Visual\Utilities.cs" />
+    <Compile Include="Visual\VisualWebPart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="12\TEMPLATE\FEATURES\VisualGrid\elements.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualGrid\feature.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualButton\elements.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualButton\feature.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualInline\elements.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualInline\feature.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualList\elements.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualList\feature.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\elements.xml" />
-    <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\feature.xml" />
-    <Content Include="solutionid.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="12\TEMPLATE\FEATURES\VisualGrid\VisualGrid.webpart" />
-    <None Include="12\TEMPLATE\FEATURES\VisualButton\VisualButton.webpart" />
-    <None Include="12\TEMPLATE\FEATURES\VisualInline\VisualInline.webpart" />
-    <None Include="12\TEMPLATE\FEATURES\VisualList\VisualList.webpart" />
-    <None Include="12\TEMPLATE\FEATURES\VisualEmbed\VisualEmbed.webpart" />
+    <None Include="Features\23Video\23Video.feature">
+      <FeatureId>{b011d542-f988-4740-82c9-beab7e0d0f7e}</FeatureId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{a52ead4e-df5c-419c-8044-fc5d0be101e4}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="VisualButton\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e2c92fba-5fdd-472d-a493-ed4810f558e0}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualButton\VisualButton.webpart" />
+    <None Include="VisualEmbed\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{41fc8c41-c52d-42c2-adce-3abe79938fa6}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualEmbed\VisualEmbed.webpart" />
+    <None Include="VisualGrid\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bdc090a0-5f9f-4f2d-b78f-461ee91d7fa2}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualGrid\VisualGrid.webpart" />
+    <None Include="VisualInline\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{24dc5ad8-44f9-4042-a32b-4d016e324013}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualInline\VisualInline.webpart" />
+    <None Include="VisualList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ded432d1-43b3-46f8-ad6d-4700b9681020}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualList\VisualList.webpart" />
     <None Include="VisualSharepoint.snk" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft.Net.Framework.2.0</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <Content Include="Features\23Video\23Video.Template.xml">
+      <DependentUpon>23Video.feature</DependentUpon>
+    </Content>
+    <Content Include="VisualButton\Elements.xml" />
+    <Content Include="VisualEmbed\Elements.xml" />
+    <Content Include="VisualGrid\Elements.xml" />
+    <Content Include="VisualInline\Elements.xml" />
+    <Content Include="VisualList\Elements.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

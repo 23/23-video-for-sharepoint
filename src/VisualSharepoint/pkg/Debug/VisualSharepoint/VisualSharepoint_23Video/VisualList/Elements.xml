@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="VisualList" List="113" Url="_catalogs/wp">
+    <File Path="VisualList\VisualList.webpart" Url="VisualSharepoint_VisualList.webpart" Type="GhostableInLibrary">
+      <Property Name="Group" Value="Custom" />
+    </File>
+  </Module>
+</Elements>

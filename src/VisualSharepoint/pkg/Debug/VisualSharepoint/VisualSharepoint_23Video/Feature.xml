@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="23Video" Description="This feature contains all the 23Video webparts for accessing information and embedding videos." Id="29356637-44a8-4548-a02c-33018cbf65d1" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="VisualButton\Elements.xml" />
+    <ElementFile Location="VisualButton\VisualButton.webpart" />
+    <ElementManifest Location="VisualEmbed\Elements.xml" />
+    <ElementFile Location="VisualEmbed\VisualEmbed.webpart" />
+    <ElementManifest Location="VisualGrid\Elements.xml" />
+    <ElementFile Location="VisualGrid\VisualGrid.webpart" />
+    <ElementManifest Location="VisualInline\Elements.xml" />
+    <ElementFile Location="VisualInline\VisualInline.webpart" />
+    <ElementManifest Location="VisualList\Elements.xml" />
+    <ElementFile Location="VisualList\VisualList.webpart" />
+  </ElementManifests>
+</Feature>

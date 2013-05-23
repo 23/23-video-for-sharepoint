@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="a52ead4e-df5c-419c-8044-fc5d0be101e4" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="VisualSharepoint.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="VisualSharepoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46464a2b593b4937" Namespace="Visual.Sharepoint.VisualButton" TypeName="*" />
+        <SafeControl Assembly="VisualSharepoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46464a2b593b4937" Namespace="Visual.Sharepoint.VisualEmbed" TypeName="*" />
+        <SafeControl Assembly="VisualSharepoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46464a2b593b4937" Namespace="Visual.Sharepoint.VisualGrid" TypeName="*" />
+        <SafeControl Assembly="VisualSharepoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46464a2b593b4937" Namespace="Visual.Sharepoint.VisualInline" TypeName="*" />
+        <SafeControl Assembly="VisualSharepoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=46464a2b593b4937" Namespace="Visual.Sharepoint.VisualList" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="VisualSharepoint_23Video\Feature.xml" />
+  </FeatureManifests>
+</Solution>
