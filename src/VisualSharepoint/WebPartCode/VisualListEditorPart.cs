@@ -28,6 +28,9 @@ namespace Visual.Sharepoint
         protected Panel OrderPanel;
         protected DropDownList Order;
 
+        protected Panel SizePanel;
+        protected DropDownList Sizes;
+
         private List<Domain.Tag> GetTags(IApiProvider apiProvider)
         {
             List<Domain.Tag> result = new List<Domain.Tag>();
@@ -178,6 +181,25 @@ namespace Visual.Sharepoint
                 OrderPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
 
                 EditorPanel.Controls.Add(OrderPanel);
+
+                // * Video size
+
+                SizePanel = new Panel();
+                SizePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionHead\">Video size</div>"));
+                SizePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionBody\"><div class=\"UserControlGroup\"><nobr>"));
+                Sizes = new DropDownList();
+                Sizes.CssClass = "UserInput";
+
+                foreach(VideoSize size in Enum.GetValues(typeof(VideoSize)))
+                {
+                    Sizes.Items.Add(new ListItem(size.ToString(), size.ToString()));
+                }
+
+                Sizes.AutoPostBack = false;
+                SizePanel.Controls.Add(Sizes);
+                SizePanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+
+                EditorPanel.Controls.Add(SizePanel);
             }
             
             base.CreateChildControls();
@@ -210,6 +232,7 @@ namespace Visual.Sharepoint
 
                 TagMode.SelectedValue = (webPart.TagMode == "All" ? "All" : "Any");
                 Order.SelectedValue = webPart.Order;
+                Sizes.SelectedValue = webPart.Size.ToString();
             }
             
             return;
@@ -241,6 +264,7 @@ namespace Visual.Sharepoint
                 webPart.TagMode = TagMode.SelectedValue;
 
                 webPart.Order = Order.SelectedValue;
+                webPart.Size = (VideoSize) Enum.Parse(typeof(VideoSize), Sizes.SelectedValue);
             }
 
             return true;

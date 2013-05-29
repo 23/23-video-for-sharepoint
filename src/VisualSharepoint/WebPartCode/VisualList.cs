@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
+using Visual.Domain;
 
 namespace Visual.Sharepoint
 {
@@ -14,6 +15,7 @@ namespace Visual.Sharepoint
         private int _count = 10;
         private string _order = "PublishedDescending";
         private string _tagMode = "Any";
+        private VideoSize _size = VideoSize.Small;
 
         [Personalizable(PersonalizationScope.Shared)]
         public string AlbumId
@@ -48,6 +50,13 @@ namespace Visual.Sharepoint
         {
             get { return _tagMode; }
             set { _tagMode = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public VideoSize Size
+        {
+            get { return _size; }
+            set { _size = value; }
         }
 
         public VisualList()
@@ -127,12 +136,14 @@ namespace Visual.Sharepoint
 
                     foreach (Domain.Photo photo in photos)
                     {
-                        string showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                        PhotoBlock size = Utilities.GetVideoSize(photo, Size);
+                        string pid = "photo" + photo.PhotoId.ToString();
+                        string showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                             
-                        this.Controls.Add(new LiteralControl("<li onclick=\"" + showVideoCall + "\">"));
-                        this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><img src=\"http://" + Configuration.Domain + photo.Small.Download + "\" /></div>"));
+                        this.Controls.Add(new LiteralControl("<li>"));
+                        this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-meta\">"));
-                        this.Controls.Add(new LiteralControl("<a href=\"#\" onclick=\"" + showVideoCall + "\">" + photo.Title + "</a>"));
+                        this.Controls.Add(new LiteralControl(photo.Title));
                         this.Controls.Add(new LiteralControl("<p>" + photo.ContentText + "</p>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-date\">" + photo.OriginalDateDate + "</div>"));
                         if (photo.ViewCount != null) this.Controls.Add(new LiteralControl("<div class=\"visual-list-views\">" + photo.ViewCount.Value.ToString() + " views</div>"));

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
+using Visual.Domain;
 
 namespace Visual.Sharepoint
 {
@@ -15,6 +16,7 @@ namespace Visual.Sharepoint
         private int _rowCount = 3;
         private string _order = "PublishedDescending";
         private string _tagMode = "Any";
+        private VideoSize _size = VideoSize.Small;
 
         [Personalizable(PersonalizationScope.Shared)]
         public string AlbumId
@@ -56,6 +58,13 @@ namespace Visual.Sharepoint
         {
             get { return _tagMode; }
             set { _tagMode = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public VideoSize Size
+        {
+            get { return _size; }
+            set { _size = value; }
         }
 
         public VisualGrid()
@@ -139,14 +148,16 @@ namespace Visual.Sharepoint
 
                     foreach (Domain.Photo photo in photos)
                     {
-                        string showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                        PhotoBlock size = Utilities.GetVideoSize(photo, Size);
+                        string pid = "photo" + photo.PhotoId.ToString();
+                        string showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
 
                         if (colNumber == 0) this.Controls.Add(new LiteralControl("<tr" + (rowNumber + 1 == rowCount ? " class=\"last\"" : "") + ">"));
 
-                        this.Controls.Add(new LiteralControl("<td onclick=\"" + showVideoCall + "\"" + ((colNumber == _rowCount - 1) ? " class=\"last\"" : "") + ">"));
-                        this.Controls.Add(new LiteralControl("<div class=\"visual-grid-image\"><img src=\"http://" + Configuration.Domain + photo.Small.Download + "\" /></div>"));
+                        this.Controls.Add(new LiteralControl("<td" + ((colNumber == _rowCount - 1) ? " class=\"last\"" : "") + ">"));
+                        this.Controls.Add(new LiteralControl("<div class=\"visual-grid-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-grid-meta\">"));
-                        this.Controls.Add(new LiteralControl("<a href=\"#\" onclick=\"" + showVideoCall + "\">" + photo.Title + "</a>"));
+                        this.Controls.Add(new LiteralControl(photo.Title));
                         this.Controls.Add(new LiteralControl("<p>" + photo.ContentText + "</p>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-grid-date\">" + photo.OriginalDateDate + "</div>"));
                         if (photo.ViewCount != null) this.Controls.Add(new LiteralControl("<div class=\"visual-grid-views\">" + photo.ViewCount.Value.ToString() + " views</div>"));
@@ -175,6 +186,7 @@ namespace Visual.Sharepoint
                 }
 
                 this.Controls.Add(new LiteralControl("</table>"));
+                this.Controls.Add(new LiteralControl("<script src=\"/_layouts/23video/23video.js\"></script>"));
             }
             catch (Exception ex)
             {

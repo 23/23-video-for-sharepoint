@@ -55,6 +55,7 @@
     <Reference Include="23API, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c691d74182a532de, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\23API.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DotNetOpenAuth, Version=3.4.5.10202, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -73,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebPartCode\Configuration.cs" />
+    <Compile Include="WebPartCode\VideoSize.cs" />
     <Compile Include="WebPartCode\VisualGrid.cs" />
     <Compile Include="WebPartCode\VisualGridEditorPart.cs" />
     <Compile Include="WebPartCode\VisualButton.cs" />
@@ -95,6 +97,7 @@
     <Content Include="12\TEMPLATE\FEATURES\VisualList\feature.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\elements.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\feature.xml" />
+    <Content Include="12\TEMPLATE\LAYOUTS\23video\23video.js" />
     <Content Include="solutionid.txt" />
   </ItemGroup>
   <ItemGroup>

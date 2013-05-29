@@ -43,7 +43,7 @@ namespace Visual.Sharepoint
                     if ((!String.IsNullOrEmpty(Height)) && (Width.Substring(Width.Length - 2, 2) == "px")) height = Convert.ToInt32(Height.Substring(0, Height.Length - 2));
 
                     // Build the embed code
-                    this.Controls.Add(new LiteralControl(Utilities.EmbedCode(PhotoId, PhotoToken, width, height)));
+                    this.Controls.Add(new LiteralControl(Utilities.EmbedCode(PhotoId, PhotoToken, width, height, false)));
                 }
                 catch (Exception ex)
                 {
