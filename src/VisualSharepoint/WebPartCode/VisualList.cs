@@ -16,6 +16,7 @@ namespace Visual.Sharepoint
         private string _order = "PublishedDescending";
         private string _tagMode = "Any";
         private VideoSize _size = VideoSize.Small;
+        private bool _clickToPlay = false;
 
         [Personalizable(PersonalizationScope.Shared)]
         public string AlbumId
@@ -57,6 +58,13 @@ namespace Visual.Sharepoint
         {
             get { return _size; }
             set { _size = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public bool ClickToPlay
+        {
+            get { return _clickToPlay; }
+            set { _clickToPlay = value; }
         }
 
         public VisualList()
@@ -138,8 +146,15 @@ namespace Visual.Sharepoint
                     {
                         PhotoBlock size = Utilities.GetVideoSize(photo, Size);
                         string pid = "photo" + photo.PhotoId.ToString();
-                        string showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
-                            
+                        string showVideoCall;
+                        if (_clickToPlay)
+                        {
+                            showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                        }
+                        else
+                        {
+                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, photo.Standard.Width.Value, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                        }
                         this.Controls.Add(new LiteralControl("<li>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-meta\">"));
@@ -153,6 +168,10 @@ namespace Visual.Sharepoint
                 }
 
                 this.Controls.Add(new LiteralControl("</ul>"));
+                if (_clickToPlay)
+                {
+                    this.Controls.Add(new LiteralControl("<script src=\"/_layouts/23video/23video.js\"></script>"));
+                }
             }
             catch (Exception ex)
             {

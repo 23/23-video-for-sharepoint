@@ -34,6 +34,9 @@ namespace Visual.Sharepoint
         protected Panel SizePanel;
         protected DropDownList Sizes;
 
+        protected Panel ClickPlayPanel;
+        protected CheckBox ClickPlayCheck;
+
         private List<Domain.Tag> GetTags(IApiProvider apiProvider)
         {
             List<Domain.Tag> result = new List<Domain.Tag>();
@@ -221,6 +224,21 @@ namespace Visual.Sharepoint
                 SizePanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
 
                 EditorPanel.Controls.Add(SizePanel);
+
+                // * Click to play video
+                ClickPlayPanel = new Panel();
+                ClickPlayPanel.Controls.Add(new LiteralControl("<div class=\"UserSectionHead\">Play on click</div>"));
+                ClickPlayPanel.Controls.Add(new LiteralControl("<div class=\"UserSectionBody\"><div class=\"UserControlGroup\"><nobr>"));
+
+                ClickPlayCheck = new CheckBox();
+                ClickPlayCheck.CssClass = "UserInput";
+                ClickPlayCheck.AutoPostBack = false;
+
+                ClickPlayPanel.Controls.Add(ClickPlayCheck);
+                ClickPlayPanel.Controls.Add(new LiteralControl("<span>Play video on click</span>"));
+                ClickPlayPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+
+                EditorPanel.Controls.Add(ClickPlayPanel);
             }
             
             base.CreateChildControls();
@@ -255,6 +273,7 @@ namespace Visual.Sharepoint
                 Order.SelectedValue = webPart.Order;
                 TagMode.SelectedValue = (webPart.TagMode == "All" ? "All" : "Any");
                 Sizes.SelectedValue = webPart.Size.ToString();
+                ClickPlayCheck.Checked = webPart.ClickToPlay;
             }
             
             return;
@@ -288,6 +307,7 @@ namespace Visual.Sharepoint
 
                 webPart.Order = Order.SelectedValue;
                 webPart.Size = (VideoSize)Enum.Parse(typeof(VideoSize), Sizes.SelectedValue);
+                webPart.ClickToPlay = ClickPlayCheck.Checked;
             }
 
             return true;
