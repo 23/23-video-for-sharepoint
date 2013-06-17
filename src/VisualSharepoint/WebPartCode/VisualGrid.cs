@@ -165,7 +165,7 @@ namespace Visual.Sharepoint
                         }
                         else
                         {
-                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, photo.Standard.Width.Value, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                         }
                         if (colNumber == 0) this.Controls.Add(new LiteralControl("<tr" + (rowNumber + 1 == rowCount ? " class=\"last\"" : "") + ">"));
 

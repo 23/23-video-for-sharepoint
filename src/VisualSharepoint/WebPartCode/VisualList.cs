@@ -153,7 +153,7 @@ namespace Visual.Sharepoint
                         }
                         else
                         {
-                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, photo.Standard.Width.Value, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                         }
                         this.Controls.Add(new LiteralControl("<li>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
