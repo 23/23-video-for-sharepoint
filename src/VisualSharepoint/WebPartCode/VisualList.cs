@@ -142,6 +142,8 @@ namespace Visual.Sharepoint
                     IPhotoService photoService = new PhotoService(apiProvider);
                     List<Domain.Photo> photos = photoService.GetList(listParameters);
 
+                    string protocol = Configuration.HttpSecure ? "https://" : "http://";
+
                     foreach (Domain.Photo photo in photos)
                     {
                         PhotoBlock size = Utilities.GetVideoSize(photo, Size);
@@ -156,7 +158,7 @@ namespace Visual.Sharepoint
                             showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                         }
                         this.Controls.Add(new LiteralControl("<li>"));
-                        this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
+                        this.Controls.Add(new LiteralControl("<div class=\"visual-list-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"" + protocol + Configuration.Domain + size.Download + "\" /></a></div>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-list-meta\">"));
                         this.Controls.Add(new LiteralControl(photo.Title));
                         this.Controls.Add(new LiteralControl("<p>" + photo.ContentText + "</p>"));

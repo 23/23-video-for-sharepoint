@@ -150,6 +150,8 @@ namespace Visual.Sharepoint
                     IPhotoService photoService = new PhotoService(apiProvider);
                     List<Domain.Photo> photos = photoService.GetList(listParameters);
 
+                    string protocol = Configuration.HttpSecure ? "https://" : "http://";
+
                     int rowNumber = 0;
                     int rowCount = (int)Math.Ceiling((decimal)photos.Count / (decimal)_rowCount);
                     int colNumber = 0;
@@ -170,7 +172,7 @@ namespace Visual.Sharepoint
                         if (colNumber == 0) this.Controls.Add(new LiteralControl("<tr" + (rowNumber + 1 == rowCount ? " class=\"last\"" : "") + ">"));
 
                         this.Controls.Add(new LiteralControl("<td" + ((colNumber == _rowCount - 1) ? " class=\"last\"" : "") + ">"));
-                        this.Controls.Add(new LiteralControl("<div class=\"visual-grid-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"http://" + Configuration.Domain + size.Download + "\" /></a></div>"));
+                        this.Controls.Add(new LiteralControl("<div class=\"visual-grid-image\"><a href=\"#\" id=\"" + pid + "\" onclick=\"" + showVideoCall + "\"><img src=\"" + protocol + Configuration.Domain + size.Download + "\" /></a></div>"));
                         this.Controls.Add(new LiteralControl("<div class=\"visual-grid-meta\">"));
                         this.Controls.Add(new LiteralControl(photo.Title));
                         this.Controls.Add(new LiteralControl("<p>" + photo.ContentText + "</p>"));
