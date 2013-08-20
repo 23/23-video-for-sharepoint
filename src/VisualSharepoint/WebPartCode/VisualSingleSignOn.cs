@@ -74,10 +74,6 @@ namespace Visual.Sharepoint
                 return_url = "/";
                 debug = "yes"; // Do not instant redirect
             }
-            else
-            {
-                return_url = HttpUtility.UrlDecode(return_url);
-            }
 
             if (apiProvider != null)
             {
@@ -100,7 +96,7 @@ namespace Visual.Sharepoint
             {
                 if (_session != null)
                 {
-                    SPUtility.Redirect(_session.ReturnURL, SPRedirectFlags.Default, Context);
+                    SPUtility.Redirect(_session.ReturnURL, SPRedirectFlags.Static, HttpContext.Current);
                 }
             }
         }
