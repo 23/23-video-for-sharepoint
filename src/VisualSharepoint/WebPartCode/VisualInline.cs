@@ -55,7 +55,7 @@ namespace Visual.Sharepoint
 
                     // Get the session token
                     ISessionService sessionService = new SessionService(Utilities.ApiProvider);
-                    Domain.Session session = sessionService.GetToken(returnUrl);
+                    Domain.Session session = sessionService.GetToken(returnUrl, null, null);
 
                     string iframeUri = session.ReturnURL;
 

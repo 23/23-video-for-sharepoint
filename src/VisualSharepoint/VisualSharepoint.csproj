@@ -83,6 +83,7 @@
     <Compile Include="WebPartCode\Utilities.cs" />
     <Compile Include="WebPartCode\VisualEmbedEditorPart.cs" />
     <Compile Include="WebPartCode\VisualList.cs" />
+    <Compile Include="WebPartCode\VisualSingleSignOn.cs" />
     <Compile Include="WebPartCode\VisualWebPart.cs" />
     <Compile Include="WebPartCode\VisualEmbed.cs" />
   </ItemGroup>
@@ -97,6 +98,8 @@
     <Content Include="12\TEMPLATE\FEATURES\VisualList\feature.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\elements.xml" />
     <Content Include="12\TEMPLATE\FEATURES\VisualEmbed\feature.xml" />
+    <Content Include="12\TEMPLATE\FEATURES\VisualSingleSignOn\elements.xml" />
+    <Content Include="12\TEMPLATE\FEATURES\VisualSingleSignOn\feature.xml" />
     <Content Include="12\TEMPLATE\LAYOUTS\23video\23video.js" />
     <Content Include="solutionid.txt" />
   </ItemGroup>
@@ -106,6 +109,7 @@
     <None Include="12\TEMPLATE\FEATURES\VisualInline\VisualInline.webpart" />
     <None Include="12\TEMPLATE\FEATURES\VisualList\VisualList.webpart" />
     <None Include="12\TEMPLATE\FEATURES\VisualEmbed\VisualEmbed.webpart" />
+    <None Include="12\TEMPLATE\FEATURES\VisualSingleSignOn\VisualSingleSignOn.webpart" />
     <None Include="VisualSharepoint.snk" />
   </ItemGroup>
   <ItemGroup>

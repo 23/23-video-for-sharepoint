@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature  Id="d544841c-abe3-4d91-aeac-58fb855369dd"
+          Title="23 Video Single Sign-On"
+          Description="Webpart to seamlessly sign in users to your 23video site, when set up to use a remote login URL."
+          Version="12.0.0.0"
+          Hidden="FALSE"
+          Scope="Site"
+          DefaultResourceFile="core"
+          xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="elements.xml"/>
+    <ElementFile Location="VisualSingleSignOn.webpart" />
+  </ElementManifests>
+</Feature>
