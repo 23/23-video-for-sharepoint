@@ -19,6 +19,9 @@ namespace Visual.Sharepoint
         protected DropDownList Videos;
         protected Panel VideoPanel;
 
+        protected Panel TokenFreePanel;
+        protected CheckBox TokenFreeCheck;
+
         private List<Domain.Photo> GetPhotos(IApiProvider apiProvider)
         {
             List<Domain.Photo> result = new List<Domain.Photo>();
@@ -80,6 +83,22 @@ namespace Visual.Sharepoint
                 VideoPanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
 
                 EditorPanel.Controls.Add(VideoPanel);
+                
+                // * Token free emebds
+                TokenFreePanel = new Panel();
+                TokenFreePanel = new Panel();
+                TokenFreePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionHead\">Token Free Embeds</div>"));
+                TokenFreePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionBody\"><div class=\"UserControlGroup\"><nobr>"));
+
+                TokenFreeCheck = new CheckBox();
+                TokenFreeCheck.CssClass = "UserInput";
+                TokenFreeCheck.AutoPostBack = false;
+
+                TokenFreePanel.Controls.Add(TokenFreeCheck);
+                TokenFreePanel.Controls.Add(new LiteralControl("<span>Require users to be logged in to view video.</span>"));
+                TokenFreePanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+
+                EditorPanel.Controls.Add(TokenFreePanel);
             }
 
             base.CreateChildControls();
@@ -97,6 +116,8 @@ namespace Visual.Sharepoint
             {
                 if ((Videos != null) && (Videos.Items.FindByValue(webPart.PhotoId) != null)) Videos.SelectedValue = webPart.PhotoId;
             }
+
+            TokenFreeCheck.Checked = webPart.TokenFreeEmbeds;
             
             return;
         }
@@ -117,6 +138,7 @@ namespace Visual.Sharepoint
 
                     webPart.PhotoId = Videos.SelectedValue;
                     webPart.PhotoToken = photo.Token;
+                    webPart.TokenFreeEmbeds = TokenFreeCheck.Checked;
                 }
             }
 

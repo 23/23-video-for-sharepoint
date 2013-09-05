@@ -37,7 +37,8 @@ namespace Visual.Sharepoint
             string heightString = (height == null ? Math.Round(width / 16.0 * 9.0).ToString() : height.Value.ToString());
             string protocol = httpsOnly ? "https" : "http";
             string apText = autoPlay ? "&autoPlay=1" : "";
-            return "<iframe src=\"" + protocol + "://" + domain + "/v.ihtml?token=" + photoToken + "&photo%5fid=" + photoId + apText + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe>";
+            string tokenCode = photoToken.Length > 0 ? "token=" + photoToken + "&" : "";
+            return "<iframe src=\"" + protocol + "://" + domain + "/v.ihtml?" + tokenCode + "photo%5fid=" + photoId + apText + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe>";
         }
 
         public static PhotoBlock GetVideoSize(Domain.Photo photo, VideoSize size)

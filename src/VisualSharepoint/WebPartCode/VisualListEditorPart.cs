@@ -34,6 +34,9 @@ namespace Visual.Sharepoint
         protected Panel ClickPlayPanel;
         protected CheckBox ClickPlayCheck;
 
+        protected Panel TokenFreePanel;
+        protected CheckBox TokenFreeCheck;
+
         private List<Domain.Tag> GetTags(IApiProvider apiProvider)
         {
             List<Domain.Tag> result = new List<Domain.Tag>();
@@ -220,6 +223,23 @@ namespace Visual.Sharepoint
 
                 EditorPanel.Controls.Add(ClickPlayPanel);
 
+
+                // * Token free emebds
+                TokenFreePanel = new Panel();
+                TokenFreePanel = new Panel();
+                TokenFreePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionHead\">Token Free Embeds</div>"));
+                TokenFreePanel.Controls.Add(new LiteralControl("<div class=\"UserSectionBody\"><div class=\"UserControlGroup\"><nobr>"));
+
+                TokenFreeCheck = new CheckBox();
+                TokenFreeCheck.CssClass = "UserInput";
+                TokenFreeCheck.AutoPostBack = false;
+
+                TokenFreePanel.Controls.Add(TokenFreeCheck);
+                TokenFreePanel.Controls.Add(new LiteralControl("<span>Require users to be logged in to view video.</span>"));
+                TokenFreePanel.Controls.Add(new LiteralControl("</nobr></div></div>"));
+
+                EditorPanel.Controls.Add(TokenFreePanel);
+
             }
             
             base.CreateChildControls();
@@ -254,6 +274,7 @@ namespace Visual.Sharepoint
                 Order.SelectedValue = webPart.Order;
                 Sizes.SelectedValue = webPart.Size.ToString();
                 ClickPlayCheck.Checked = webPart.ClickToPlay;
+                TokenFreeCheck.Checked = webPart.TokenFreeEmbeds;
             }
             
             return;
@@ -287,6 +308,7 @@ namespace Visual.Sharepoint
                 webPart.Order = Order.SelectedValue;
                 webPart.Size = (VideoSize) Enum.Parse(typeof(VideoSize), Sizes.SelectedValue);
                 webPart.ClickToPlay = ClickPlayCheck.Checked;
+                webPart.TokenFreeEmbeds = TokenFreeCheck.Checked;
             }
 
             return true;

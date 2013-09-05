@@ -13,6 +13,7 @@ namespace Visual.Sharepoint
         private bool _error = false;
         private string _photoId = null;
         private string _photoToken = null;
+        private bool _tokenFreeEmebds = false;
 
         [Personalizable(PersonalizationScope.Shared)]
         public string PhotoId
@@ -26,6 +27,13 @@ namespace Visual.Sharepoint
         {
             get { return _photoToken; }
             set { _photoToken = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public bool TokenFreeEmbeds
+        {
+            get { return _tokenFreeEmebds; }
+            set { _tokenFreeEmebds = value; }
         }
 
         /// <summary>
@@ -43,7 +51,8 @@ namespace Visual.Sharepoint
                     if ((!String.IsNullOrEmpty(Height)) && (Width.Substring(Width.Length - 2, 2) == "px")) height = Convert.ToInt32(Height.Substring(0, Height.Length - 2));
 
                     // Build the embed code
-                    this.Controls.Add(new LiteralControl(Utilities.EmbedCode(PhotoId, PhotoToken, width, height, false)));
+                    string token = _tokenFreeEmebds ? "" : PhotoToken;
+                    this.Controls.Add(new LiteralControl(Utilities.EmbedCode(PhotoId, token, width, height, false)));
                 }
                 catch (Exception ex)
                 {

@@ -18,6 +18,7 @@ namespace Visual.Sharepoint
         private string _tagMode = "Any";
         private VideoSize _size = VideoSize.Small;
         private bool _clickToPlay = false;
+        private bool _tokenFreeEmbeds = false;
 
         [Personalizable(PersonalizationScope.Shared)]
         public string AlbumId
@@ -73,6 +74,13 @@ namespace Visual.Sharepoint
         {
             get { return _clickToPlay; }
             set { _clickToPlay = value; }
+        }
+
+        [Personalizable(PersonalizationScope.Shared)]
+        public bool TokenFreeEmbeds
+        {
+            get { return _tokenFreeEmbeds; }
+            set { _tokenFreeEmbeds = value; }
         }
 
         public VisualGrid()
@@ -161,13 +169,14 @@ namespace Visual.Sharepoint
                         PhotoBlock size = Utilities.GetVideoSize(photo, Size);
                         string pid = "photo" + photo.PhotoId.ToString();
                         string showVideoCall;
+                        string token = _tokenFreeEmbeds ? "" : photo.Token;
                         if (_clickToPlay)
                         {
-                            showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                            showVideoCall = "showVideo('" + pid + "','" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), token, size.Width.Value, null, true).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                         }
                         else
                         {
-                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), photo.Token, 640, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
+                            showVideoCall = "showVideo('" + Utilities.EmbedCode(photo.PhotoId.Value.ToString(), token, 640, null, false).Replace("\"", "&#34;").Replace("'", "\\'") + "'); return false;";
                         }
                         if (colNumber == 0) this.Controls.Add(new LiteralControl("<tr" + (rowNumber + 1 == rowCount ? " class=\"last\"" : "") + ">"));
 
