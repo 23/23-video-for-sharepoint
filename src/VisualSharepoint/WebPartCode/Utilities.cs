@@ -38,7 +38,7 @@ namespace Visual.Sharepoint
             string protocol = httpsOnly ? "https" : "http";
             string apText = autoPlay ? "&autoPlay=1" : "";
             string tokenCode = photoToken.Length > 0 ? "token=" + photoToken + "&" : "";
-            return "<iframe src=\"" + protocol + "://" + domain + "/v.ihtml?" + tokenCode + "photo%5fid=" + photoId + apText + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\"></iframe>";
+            return "<iframe src=\"" + protocol + "://" + domain + "/v.ihtml?" + tokenCode + "photo%5fid=" + photoId + apText + "\" width=\"" + widthString + "\" height=\"" + heightString + "\" frameborder=\"0\" border=\"0\" scrolling=\"no\" allowfullscreen=\"1\" mozallowfullscreen=\"1\" webkitallowfullscreen=\"1\"></iframe>";
         }
 
         public static PhotoBlock GetVideoSize(Domain.Photo photo, VideoSize size)
