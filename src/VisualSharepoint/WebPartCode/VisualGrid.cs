@@ -10,7 +10,7 @@ namespace Visual.Sharepoint
     [Guid("edd43a69-ebc4-4c68-8541-082089b4fd3d")]
     public class VisualGrid : Microsoft.SharePoint.WebPartPages.WebPart, IWebEditable
     {
-        private string _albumId = null;
+        private string _albumInfo = null;
         private List<string> _tags = null;
         private int _count = 9;
         private int _rowCount = 3;
@@ -21,10 +21,10 @@ namespace Visual.Sharepoint
         private bool _tokenFreeEmbeds = false;
 
         [Personalizable(PersonalizationScope.Shared)]
-        public string AlbumId
+        public string AlbumInfo
         {
-            get { return _albumId; }
-            set { _albumId = value; }
+            get { return _albumInfo; }
+            set { _albumInfo = value; }
         }
 
         [Personalizable(PersonalizationScope.Shared)]
@@ -106,7 +106,12 @@ namespace Visual.Sharepoint
                     Size = _count
                 };
 
-                if (!String.IsNullOrEmpty(_albumId)) listParameters.AlbumId = Convert.ToInt32(_albumId);
+                if (!String.IsNullOrEmpty(_albumInfo))
+                {
+                    string[] albumParams = _albumInfo.Split('|');
+                    listParameters.AlbumId = Convert.ToInt32(albumParams[0]);
+                    listParameters.Token = albumParams[1];
+                }
 
                 switch (_order)
                 {

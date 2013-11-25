@@ -108,7 +108,7 @@ namespace Visual.Sharepoint
                 IAlbumService albumService = new AlbumService(apiProvider);
                 List<Domain.Album> albums = albumService.GetList(new AlbumListParameters
                 {
-                    IncludeHidden = false,
+                    IncludeHidden = true,
                     Size = 500,
                     OrderBy = AlbumListSort.Title,
                     Order = GenericSort.Ascending
@@ -118,7 +118,7 @@ namespace Visual.Sharepoint
 
                 foreach (Domain.Album album in albums)
                 {
-                    if (album.AlbumId != null) Channels.Items.Add(new ListItem(String.IsNullOrEmpty(album.Title) ? "(no title)" : album.Title, album.AlbumId.Value.ToString()));
+                    if (album.AlbumId != null) Channels.Items.Add(new ListItem(String.IsNullOrEmpty(album.Title) ? "(no title)" : album.Title, album.AlbumId.Value.ToString() + "|" + album.Token));
                 }
 
                 // Finish it up
@@ -257,8 +257,8 @@ namespace Visual.Sharepoint
             {
                 Count.Text = webPart.Count.ToString();
                 
-                if ((!String.IsNullOrEmpty(webPart.AlbumId)) && (Channels.Items.FindByValue(webPart.AlbumId) != null))
-                    Channels.SelectedValue = webPart.AlbumId;
+                if ((!String.IsNullOrEmpty(webPart.AlbumInfo)) && (Channels.Items.FindByValue(webPart.AlbumInfo) != null))
+                    Channels.SelectedValue = webPart.AlbumInfo;
                 else Channels.SelectedValue = "-";
 
                 if (webPart.Tags != null)
@@ -292,7 +292,7 @@ namespace Visual.Sharepoint
                 webPart.Count = Convert.ToInt32(Count.Text);
 
                 // Album
-                webPart.AlbumId = ((String.IsNullOrEmpty(Channels.SelectedValue)) || (Channels.SelectedValue == "-") ? null : Channels.SelectedValue);
+                webPart.AlbumInfo = ((String.IsNullOrEmpty(Channels.SelectedValue)) || (Channels.SelectedValue == "-") ? null : Channels.SelectedValue);
 
                 // Tags
                 List<string> tags = new List<string>();
