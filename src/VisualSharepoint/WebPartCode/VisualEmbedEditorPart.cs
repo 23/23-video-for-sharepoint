@@ -134,7 +134,7 @@ namespace Visual.Sharepoint
                 if (Videos != null)
                 {
                     IPhotoService photoService = new PhotoService(Utilities.ApiProvider);
-                    Domain.Photo photo = photoService.Get(Convert.ToInt32(Videos.SelectedValue), false);
+                    Domain.Photo photo = photoService.Get(Convert.ToInt32(Videos.SelectedValue), false, null);
 
                     webPart.PhotoId = Videos.SelectedValue;
                     webPart.PhotoToken = photo.Token;
